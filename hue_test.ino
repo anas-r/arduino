@@ -53,14 +53,16 @@ void setup() {
   // initialize the Potentiometer and button pin as inputs:
   pinMode(POTENTIOMETER_PIN, INPUT);
   pinMode(BUTTON_PIN, INPUT);
-
+    
+  WiFi.begin(wifi_ssid, wifi_password) ;
   mqtt_client.begin("max.isasecret.com", 1723, wifi_client);
   mqtt_client.onMessage(messageReceived);
+
+      connect();
 
   // Time begins now!
   t0 = t = millis() ;
 
-  connect();
 }
 
 void loop() {
@@ -118,7 +120,7 @@ void loop() {
 }
 
 void connect() {
-  WiFi.begin(wifi_ssid, wifi_password) ;
+  //WiFi.begin(wifi_ssid, wifi_password) ;
   Serial.print("Connecting to ");
   Serial.print(wifi_ssid);
   Serial.print("\n") ;
